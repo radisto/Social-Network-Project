@@ -1,0 +1,198 @@
+@font-face {
+    font-family: Trench;
+    src: url(/fonts/Trench.otf);
+}
+
+@font-face {
+    font-family: Facebook;
+    src: url(/fonts/Facebook.otf);
+}
+
+body {
+    margin: 0;
+    font-family: Verdana;
+}
+
+#logo {
+    position: absolute;
+    left: 30px;
+    top: 150px;
+}
+
+#url {
+    font-family: Trench;
+    font-weight: bold;
+    font-size: 50px;
+    position: absolute;
+    left: 10px;
+}
+
+header {
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    background-color: lightblue;
+    border-bottom: 1px solid gray;
+}
+
+#wrapper {
+    margin: 20px auto 0 auto;
+    width: 400px;
+}
+
+#reg-form {
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: rgb(245, 245, 255);
+}
+
+.form-header {
+    font-size: 20px;
+}
+
+.row {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 20px 0;
+    height: 50px;
+    overflow: hidden;
+}
+
+.icon {
+    background: #f1f1f1;
+    padding: 6px 15px 0 30px;
+    border-right: 1px solid black;
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    font-size: 30px;
+}
+
+.register {
+    height: 30px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    width: 254px;
+    vertical-align: 6px;
+}
+
+.login {
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid darkgray;
+    width: 150px;
+    margin-top: 10px;
+}
+
+::-webkit-input-placeholder {
+    /* TODO: Implement it for Firefox */
+    
+    font-weight: normal;
+    text-align: center;
+    font-family: Verdana;
+}
+
+.button {
+    color: white;
+    background-color: rgb(30, 180, 30);
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: rgb(60, 190, 60);
+}
+
+.small {
+    width: 90px;
+    height: 28px;
+    font-size: 16px;
+    border: 1px solid white;
+    margin-top: 10px;
+}
+
+.big {
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.right {
+    text-align: right;
+}
+
+.small-text {
+    font-size: 15px;
+    text-align: center;
+    display: block;
+}
+
+.big-text {
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    color: rgb(150, 0, 0);
+    font-weight: bold;
+}
+
+#reg-plus {
+    font-size: 40px;
+    color: rgb(218, 216, 32);
+    -webkit-text-stroke: 1px black;
+    /* TODO: Implement it for Firefox */
+}
+
+#profile-pic {
+    height: 100%;
+}
+
+#profile-holder {
+    height: 100%;
+    float: right;
+}
+
+#username-header {
+    vertical-align: 10px;
+    font-size: 32px;
+    font-family: Facebook;
+}
+
+#down-arrow {
+    vertical-align: 5px;
+    font-size: 30px;
+    margin-right: 5px;
+    margin-left: -5px;
+}
+
+#drop-down:hover {
+    cursor: pointer;
+}
+
+#invisible {
+    display: none;
+    border-left: 1px solid gray;
+    width: 150px;
+    position: absolute;
+    right: 0;
+    background-color: lightblue;
+    margin-top: -3px;
+    width: 200px;
+}
+
+#invisible p {
+    font-size: 16px;
+    padding: 7px 0;
+    margin: 0;
+    border-bottom: 1px solid gray;
+}
+
+#invisible p:hover {
+    background-color: #248fc1;
+    color: white;
+    cursor: pointer;
+}
