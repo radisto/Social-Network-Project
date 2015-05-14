@@ -103,7 +103,10 @@ header {
 
 .button:hover {
     cursor: pointer;
-    background-color: rgb(60, 190, 60);
+    /* background-color: rgb(60, 190, 60); */
+    background-color: rgb(125, 255, 0);
+    border: 1px solid gray;
+    color: black;
 }
 
 .small {
@@ -184,14 +187,21 @@ header {
     width: 200px;
 }
 
-#invisible p {
+#invisible a {
+    color: rgb(0, 0, 200);
     font-size: 16px;
     padding: 7px 0;
     margin: 0;
     border-bottom: 1px solid gray;
+    display: block;
+    text-decoration: none;
 }
 
-#invisible p:hover {
+#invisible a:visited {
+    color: rgb(0, 0, 200);
+}
+
+#invisible a:hover {
     background-color: #248fc1;
     color: white;
     cursor: pointer;

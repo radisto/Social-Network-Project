@@ -1,6 +1,8 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 //TODO: BETTER NAME
 
+myApp.constant('BASE_URL', 'http://softuni-social-network.azurewebsites.net/api/');
+
 myApp.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -13,44 +15,67 @@ myApp.config(function ($routeProvider) {
             templateUrl: 'temps/profile.html',
             controller: 'profileCtrl'
         })
+        .when('/logout', {
+            controller: 'logoutCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
 });
 
-myApp.run(function ($location, $rootScope) {
+myApp.run(function ($http, $location, $rootScope) {
+    $http.defaults.headers.common['Content-Type'] = 'application/json';
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
     });
 });
 
-myApp.controller('mainCtrl', function ($scope) {
-    $scope.loadHeader = function (isLogged, username) {
-        if (isLogged) {
-            $scope.username = username;
-            $scope.header = 'temps/user-header.html';
+myApp.service('myService', function ($http, $location, BASE_URL) {
 
-            $('header').on('click', '#drop-down', function showHide() {
-                var element = $('#invisible');
-                if (element.is(':hidden')) {
-                    element.show()
-                } else {
-                    element.hide();
-                }
+    var service = {};
+
+    service.login = function () {
+        var user = {
+            username: 'billgates',
+            password: 'bigbill'
+        };
+        $http.post(BASE_URL + 'users/login', user)
+            .success(function (data) {
+                sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
+                sessionStorage.setItem('userName', data.userName);
+            })
+            .error(function (err) {
+                console.log(err);
             });
-        } else {
-            $scope.header = 'temps/guest-header.html';
-            $('header').off('click', '#drop-down');
-        }
-    }
+    };
+    
+    service.logout = function () {
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        $http.post(BASE_URL + 'users/logout')
+            .success(function (data) {
+                console.log(data);
+                sessionStorage.clear();
+            })
+            .error(function (err) {
+                console.log(err);
+            });
+    };
+
+    return service;
 });
 
-myApp.controller('homeCtrl', function ($scope) {
-    $scope.loadHeader(false);
-});
 
-myApp.controller('profileCtrl', function ($scope) {
-    //gets username somehow
-    var username = 'billgates';
-    $scope.loadHeader(true, username);
-});
+//module.factory('sessionInjector', ['SessionService', function(SessionService) {  
+//    var sessionInjector = {
+//        request: function(config) {
+//            if (!SessionService.isAnonymus) {
+//                config.headers['x-session-token'] = SessionService.token;
+//            }
+//            return config;
+//        }
+//    };
+//    return sessionInjector;
+//}]);
+//module.config(['$httpProvider', function($httpProvider) {  
+//    $httpProvider.interceptors.push('sessionInjector');
+//}]);
