@@ -24,7 +24,7 @@ myApp.config(function ($routeProvider) {
         });
 });
 
-myApp.run(function ($http, $rootScope) { //$location
+myApp.run(function ($http, $rootScope) {
     $http.defaults.headers.common['Content-Type'] = 'application/json';
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;

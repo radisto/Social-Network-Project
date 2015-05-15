@@ -44,7 +44,7 @@ header {
     padding: 20px;
     border: 1px solid gray;
     border-radius: 15px;
-    background-color: rgb(245, 255, 250);
+    background-color: rgb(245, 245, 245);
 }
 
 .form-header {
@@ -60,7 +60,7 @@ header {
 }
 
 .icon {
-    background: #f1f1f1;
+    background: white;
     padding: 6px 24px 0 22px;
     border-right: 1px solid black;
     display: inline-block;
