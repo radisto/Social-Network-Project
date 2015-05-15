@@ -44,7 +44,7 @@ header {
     padding: 20px;
     border: 1px solid gray;
     border-radius: 15px;
-    background-color: rgb(245, 245, 255);
+    background-color: rgb(245, 255, 250);
 }
 
 .form-header {
@@ -61,7 +61,7 @@ header {
 
 .icon {
     background: #f1f1f1;
-    padding: 6px 15px 0 30px;
+    padding: 6px 24px 0 22px;
     border-right: 1px solid black;
     display: inline-block;
     width: 10%;
@@ -72,7 +72,7 @@ header {
 .register {
     height: 30px;
     padding: 5px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     border: none;
     width: 254px;
@@ -81,11 +81,12 @@ header {
 
 .login {
     padding: 5px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     border: 1px solid darkgray;
     width: 150px;
     margin-top: 10px;
+    text-align: center;
 }
 
 ::-webkit-input-placeholder {
@@ -99,14 +100,17 @@ header {
 .button {
     color: white;
     background-color: rgb(30, 180, 30);
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
 }
 
 .button:hover {
     cursor: pointer;
-    /* background-color: rgb(60, 190, 60); */
     background-color: rgb(125, 255, 0);
     border: 1px solid gray;
     color: black;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
 }
 
 .small {

@@ -1,4 +1,4 @@
-<div id="reg-form">
+<div id="reg-form" ng-submit="register(userReg, nameReg, mailReg, passReg, pass2Reg)" ng-controller="registerCtrl">
    <div id="logo">
        <img src="/img/logo.jpg" alt="">
    </div>
@@ -9,38 +9,46 @@
         </div>
         <div class="row">
             <span class="icon">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-user fa-fw"></i>
             </span>
             <label for="username">
-                <input type="text" class="register" id="username" placeholder="username">
+                <input type="text" class="register" id="username" placeholder="username" ng-model="userReg" required>
             </label>
         </div>
         <div class="row">
             <span class="icon">
-                <i class="fa fa-male"></i>
+                <i class="fa fa-male fa-fw"></i>
             </span>
             <label for="full-name">
-                <input type="text" class="register" id="full-name" placeholder="full name">
+                <input type="text" class="register" id="full-name" placeholder="full name" ng-model="nameReg" required>
             </label>
         </div>
         <div class="row">
             <span class="icon">
-                 <i class="fa fa-unlock-alt"></i>
+                <i class="fa fa-envelope fa-fw"></i>
+            </span>
+            <label for="email">
+                <input type="email" class="register" id="email" placeholder="e-mail" ng-model="mailReg" required>
+            </label>
+        </div>
+        <div class="row">
+            <span class="icon">
+                 <i class="fa fa-unlock-alt fa-fw"></i>
             </span>
             <label for="password">
-                <input type="password" class="register" id="password" placeholder="password">
+                <input type="password" class="register" id="password" placeholder="password" ng-model="passReg" required>
             </label>
         </div>
         <div class="row">
             <span class="icon">
-                <i class="fa fa-lock"></i>
+                <i class="fa fa-lock fa-fw"></i>
             </span>
             <label for="password-repeat">
-                <input type="password" class="register" id="password-repeat" placeholder="repeat password">
+                <input type="password" class="register" id="password-repeat" placeholder="repeat password" ng-model="pass2Reg" required>
             </label>
         </div>
         <div class="right">
-            <a href="#/profile"><button class="button big" id="register">Register</button></a>
+            <button class="button big" type="submit">Register</button>
         </div>
     </form>
 </div>
