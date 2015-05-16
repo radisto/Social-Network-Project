@@ -1,15 +1,17 @@
 <div id="profile-holder">
+    <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-keyup="searchUsers(searchUserName)">
+
     <img src="/img/bill-gates.jpg" id="profile-pic" alt="">
 
     <span id="drop-down">
         <span id="username-header">{{username}}</span>
-        <span id="down-arrow">
-            <i class="fa fa-sort-down (alias)"></i>
-        </span>
-        <div id="invisible">
-            <a href="#/profile">view profile</a>
-            <a href="#/profile">change password</a>
-            <a href="#/logout">logout</a>
-        </div>
+    <span id="down-arrow">
+        <i class="fa fa-sort-down (alias)"></i>
+    </span>
+    <div id="invisible">
+        <a href="#/profile">view profile</a>
+        <a href="#/profile">change password</a>
+        <a href="#/logout">logout</a>
+    </div>
     </span>
 </div>

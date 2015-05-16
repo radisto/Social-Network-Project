@@ -36,8 +36,7 @@ header {
 }
 
 #wrapper {
-    margin: 20px auto 0 auto;
-    width: 400px;
+    
 }
 
 #reg-form {
@@ -45,6 +44,8 @@ header {
     border: 1px solid gray;
     border-radius: 15px;
     background-color: rgb(245, 245, 245);
+    margin: 20px auto 0 auto;
+    width: 350px;
 }
 
 .form-header {
@@ -72,16 +73,16 @@ header {
 .register {
     height: 30px;
     padding: 5px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     border: none;
-    width: 254px;
-    vertical-align: 6px;
+    width: 245px;
+    vertical-align: 4px;
 }
 
 .login {
-    padding: 5px;
-    font-size: 16px;
+    padding: 4px 3px 5px 3px;
+    font-size: 14px;
     font-weight: bold;
     border: 1px solid darkgray;
     width: 150px;
@@ -209,4 +210,31 @@ header {
     background-color: #248fc1;
     color: white;
     cursor: pointer;
+}
+
+#view-cover {
+    height: 150px;
+    background-image: url(/img/1.jpg);
+}
+
+#view-pic {
+    height: 100%;
+    margin-left: 200px;
+    box-sizing: border-box;
+    border-style: double;
+    background-color: white;
+}
+
+#user-search {
+    vertical-align: 20px;
+    padding: 5px;
+    font-size: 16px;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+}
+
+input {
+    font-family: Verdana;
 }

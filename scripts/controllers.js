@@ -1,6 +1,7 @@
-myApp.controller('mainCtrl', function ($scope) {
+myApp.controller('mainCtrl', function ($scope, myService) {
     $scope.loadHeader = function (isLogged) {
         if (isLogged) {
+            $scope.username = sessionStorage.getItem('username');
             $scope.header = 'temps/user-header.html';
             $('header').on('click', '#drop-down', function showHide() {
                 var element = $('#invisible');
@@ -15,6 +16,17 @@ myApp.controller('mainCtrl', function ($scope) {
             $('header').off('click', '#drop-down');
         }
     }
+
+    $scope.searchUsers = function (userName) {
+        if (userName && userName.trim()) {
+            myService.searchUsers(userName.trim())
+                .then(function (data) {
+                    console.log(data);
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+    };
 });
 
 myApp.controller('homeCtrl', function ($scope) {
@@ -22,16 +34,15 @@ myApp.controller('homeCtrl', function ($scope) {
 });
 
 myApp.controller('profileCtrl', function ($scope, myService) {
-
+    $scope.loadHeader(true);
 });
 
-myApp.controller('registerCtrl', function ($rootScope, $scope, $location, myService) {
+myApp.controller('registerCtrl', function ($scope, $location, myService) {
     $scope.register = function (username, fullName, email, password, repeatPassword) {
         myService.register(username, fullName, email, password, repeatPassword)
             .then(function (data) {
                 sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
-                $rootScope.username = username;
-                $scope.loadHeader(true);
+                sessionStorage.setItem('username', username);
                 $location.path('/profile');
             }, function (error) {
                 console.log(error);
@@ -39,13 +50,12 @@ myApp.controller('registerCtrl', function ($rootScope, $scope, $location, myServ
     }
 });
 
-myApp.controller('loginCtrl', function ($rootScope, $scope, $location, myService) {
+myApp.controller('loginCtrl', function ($scope, $location, myService) {
     $scope.login = function (username, password) {
         myService.login(username, password)
             .then(function (data) {
                 sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
-                $rootScope.username = username;
-                $scope.loadHeader(true);
+                sessionStorage.setItem('username', username);
                 $location.path('/profile');
             }, function (error) {
                 console.log(error);

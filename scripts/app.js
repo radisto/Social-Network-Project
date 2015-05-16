@@ -30,3 +30,5 @@ myApp.run(function ($http, $rootScope) {
         $rootScope.title = current.$$route.title;
     });
 });
+
+//http://dummyimage.com/
