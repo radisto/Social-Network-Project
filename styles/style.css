@@ -1,11 +1,11 @@
 @font-face {
     font-family: Trench;
-    src: url(/fonts/Trench.otf);
+    src: url(../fonts/Trench.otf);
 }
 
 @font-face {
     font-family: Facebook;
-    src: url(/fonts/Facebook.otf);
+    src: url(../fonts/Facebook.otf);
 }
 
 body {
@@ -35,9 +35,7 @@ header {
     border-bottom: 1px solid gray;
 }
 
-#wrapper {
-    
-}
+#wrapper {}
 
 #reg-form {
     padding: 20px;
@@ -214,7 +212,7 @@ header {
 
 #view-cover {
     height: 150px;
-    background-image: url(/img/1.jpg);
+    background-image: url(../img/1.jpg);
 }
 
 #view-pic {
@@ -237,4 +235,53 @@ header {
 
 input {
     font-family: Verdana;
+}
+
+.users-names {
+    width: 100px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    color: black;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 20px;
+    position: relative;
+    padding: 0px 5px;
+    margin: 0 5px 5px 5px;
+    background-color: white;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+}
+
+.users-name-holder {
+    vertical-align: middle;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    margin-left: 50%;
+    margin-right: -50%;
+    transform: translate(-55%, -50%);
+}
+
+.users-names:hover {
+    background-color: #248fc1;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+}
+
+#pop-up {
+  display: none;
+  position: absolute;
+  padding: 5px;
+  background: white;
+  border: 1px solid black;
+}
+
+#pop-up img {
+    max-width: 150px;
+    max-height: 200px;
 }

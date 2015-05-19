@@ -63,6 +63,19 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
         return defer.promise;
     };
 
+    service.userFullData = function (username) {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        $http.get(BASE_URL + 'users/' + username)
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    };
+
     return service;
 });
 

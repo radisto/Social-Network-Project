@@ -1,10 +1,19 @@
 <div id="profile-holder">
+    <div id="pop-up">
+        <img ng-src="{{currentUser.profileImageData || 'http://dummyimage.com/150x200/dddddd/000000&text=no+image'}}"><br>
+        <span id="username-delete">{{currentUser.username}}</span>
+        <span><i class="fa fa-{{currentUser.gender == 1 ? 'mars' : currentUser.gender == 2 ? 'venus' : 'transgender'}}"></i></span>
+    </div>
+    <span class="users-names" ng-repeat="user in foundUsers" id="user{{$index}}">
+        <p class="users-name-holder">{{user.name}}</p>
+    </span>
     <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-keyup="searchUsers(searchUserName)">
 
-    <img src="/img/bill-gates.jpg" id="profile-pic" alt="">
+    <img src="img/bill-gates.jpg" id="profile-pic" alt="">
 
     <span id="drop-down">
         <span id="username-header">{{username}}</span>
+        <!-- TODO: ^THIS^ -->
     <span id="down-arrow">
         <i class="fa fa-sort-down (alias)"></i>
     </span>
