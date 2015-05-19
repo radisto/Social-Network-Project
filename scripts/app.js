@@ -19,6 +19,11 @@ myApp.config(function ($routeProvider) {
             template: ' ',
             controller: 'logoutCtrl'
         })
+        .when('/profile/edit', {
+            title: 'Nice2MeetU - Edit Profile',
+            templateUrl: 'temps/profile-edit.html',
+            controller: 'profileCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

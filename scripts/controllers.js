@@ -25,6 +25,8 @@ myApp.controller('mainCtrl', function ($scope, myService) {
                 }, function (error) {
                     console.log(error);
                 });
+        } else {
+            $scope.foundUsers = {};
         }
     };
 
@@ -62,7 +64,7 @@ myApp.controller('mainCtrl', function ($scope, myService) {
                 }, function (error) {
                     console.log(error);
                 });
-            
+
         });
     }());
 });
@@ -111,4 +113,68 @@ myApp.controller('logoutCtrl', function ($scope, $http, $location, myService) {
             console.log(error);
         });
 
+});
+
+myApp.controller('editCtrl', function ($scope, $location, myService) {
+    (function () {
+        var container = $('#wrapper');
+
+        container.on('click', '#profile-image-button', function () {
+            $('#profile-image').click();
+        });
+
+        container.on('change', '#profile-image', function () {
+            var file = this.files[0],
+                reader;
+
+            if (file.type.match(/image\/.*/)) {
+                var preview = $('#profile-image-preview');
+                reader = new FileReader();
+                reader.onload = function () {
+                    var imgUrl = reader.result;
+                    preview.attr('src', imgUrl);
+                    $scope.$apply(function () {
+                        $scope.profImgEdit = imgUrl.split(',')[1];
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+
+            }
+        });
+        
+        container.on('click', '#profile-cover-button', function () {
+            $('#profile-cover').click();
+        });
+
+        container.on('change', '#profile-cover', function () {
+            var file = this.files[0],
+                reader;
+
+            if (file.type.match(/image\/.*/)) {
+                var preview = $('#profile-cover-preview');
+                reader = new FileReader();
+                reader.onload = function () {
+                    var imgUrl = reader.result;
+                    preview.attr('src', imgUrl);
+                    $scope.$apply(function () {
+                        $scope.covImgEdit = imgUrl.split(',')[1];
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+
+            }
+        });
+    }());
+    
+    $scope.editProfile = function (fullName, email, gender, image, cover) {
+        myService.editProfile(fullName, email, gender, image, cover)
+            .then(function (data) {
+                console.log(data);
+                $location.path('/profile');
+            }, function (error) {
+                console.log(error);
+            });
+    }
 });

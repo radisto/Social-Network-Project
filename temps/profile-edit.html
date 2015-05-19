@@ -1,0 +1,52 @@
+<div id="reg-form" ng-controller="editCtrl">
+    <form>
+        <div class="form-header">
+            <span class="big-text"></span>Edit Profile</span>
+        </div>
+        <div class="row">
+            <span class="icon">
+                <i class="fa fa-male fa-fw"></i>
+            </span>
+            <label for="full-name">
+                <input type="text" class="register" id="full-name" placeholder="full name" ng-model="nameEdit">
+            </label>
+        </div>
+        <div class="row">
+            <span class="icon">
+                <i class="fa fa-envelope fa-fw"></i>
+            </span>
+            <label for="email">
+                <input type="email" class="register" id="email" placeholder="e-mail" ng-model="mailEdit">
+            </label>
+        </div>
+        <div class="row">
+            <span class="icon">
+                <i class="fa fa-venus-mars fa-fw"></i>
+            </span>
+            <label for="username">
+                <input type="text" class="register" id="username" placeholder="username" ng-model="genderEdit">
+            </label>
+        </div>
+        <div class="preview-center">
+            <div id="image-preview-holder">
+                <img id="profile-image-preview" />
+            </div>
+            <div>
+                <button id="profile-image-button" class="button small">Upload</button>
+                <input type="file" id="profile-image" />
+            </div>
+        </div>
+        <div class="preview-center">
+            <div id="cover-preview-holder">
+                <img id="profile-cover-preview" />
+            </div>
+            <div>
+                <button id="profile-cover-button" class="button small">Upload</button>
+                <input type="file" id="profile-cover" />
+            </div>
+        </div>
+        <div class="right">
+            <button class="button big" type="submit" ng-click="editProfile(nameEdit, mailEdit, genderEdit, profImgEdit, covImgEdit)">Submit</button>
+        </div>
+    </form>
+</div>

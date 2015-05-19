@@ -224,13 +224,14 @@ header {
 }
 
 #user-search {
-    vertical-align: 20px;
+    vertical-align: 18px;
     padding: 5px;
-    font-size: 16px;
+    font-size: 18px;
     width: 150px;
     border-radius: 10px;
     border: none;
     text-align: center;
+    margin-right: 5px;
 }
 
 input {
@@ -274,14 +275,42 @@ input {
 }
 
 #pop-up {
-  display: none;
-  position: absolute;
-  padding: 5px;
-  background: white;
-  border: 1px solid black;
+    display: none;
+    position: absolute;
+    padding: 5px;
+    background: white;
+    border: 1px solid black;
 }
 
 #pop-up img {
     max-width: 150px;
-    max-height: 200px;
+    max-height: 180px;
+}
+
+#profile-image-preview {
+    max-width: 150px;
+    max-height: 180px;
+}
+
+#profile-cover-preview {
+    max-width: 100%;
+}
+
+#profile-image,
+#profile-cover {
+    position: absolute;
+    display: none !important;
+}
+
+#image-preview-holder {
+    min-height: 100px;
+}
+
+#cover-preview-holder {
+    height: 100px;
+    overflow: hidden;
+}
+
+.preview-center {
+    text-align: center;
 }

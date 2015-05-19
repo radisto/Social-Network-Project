@@ -75,6 +75,26 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
             });
         return defer.promise;
     };
+    
+    service.editProfile = function (fullName, email, gender, image, cover) {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        var editUser = {
+            name: fullName,
+            email: email,
+            gender: gender,
+            profileImageData: image,
+            coverImageData: cover
+        };
+        $http.put(BASE_URL + 'me', editUser)
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    };
 
     return service;
 });
