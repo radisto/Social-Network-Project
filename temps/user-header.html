@@ -6,10 +6,10 @@
     </div>
     <span class="users-names" ng-repeat="user in foundUsers" id="user{{$index}}">
         <p class="users-name-holder">{{user.name}}</p>
-    </span>
+    </span><!-- ng-model-options="{debounce: 1000}"-->
     <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-keyup="searchUsers(searchUserName)">
 
-    <img src="img/bill-gates.jpg" id="profile-pic" alt="">
+    <img ng-src="data:image/jpg;base64,{{profileImage}}" id="profile-pic">
 
     <span id="drop-down">
         <span id="username-header">{{username}}</span>

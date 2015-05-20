@@ -1,22 +1,32 @@
 myApp.controller('mainCtrl', function ($scope, myService) {
+    (function () {
+        myService.myData()
+            .then(function (data) {
+                $scope.username = data.username;
+                $scope.profileImage = data.profileImageData;
+                //$scope.coverImage = data.coverImageData;
+            }, function (error) {
+                console.log(error);
+            });
+    }());
+    
     $scope.loadHeader = function (isLogged) {
         if (isLogged) {
-            $scope.username = sessionStorage.getItem('username');
             $scope.header = 'temps/user-header.html';
+            $('header').off('click', '#drop-down');
             $('header').on('click', '#drop-down', function showHide() {
                 var element = $('#invisible');
                 if (element.is(':hidden')) {
-                    element.show()
+                    element.show();
                 } else {
                     element.hide();
                 }
             });
         } else {
             $scope.header = 'temps/guest-header.html';
-            $('header').off('click', '#drop-down');
         }
     }
-
+    
     $scope.searchUsers = function (userName) {
         if (userName && userName.trim()) {
             myService.searchUsers(userName.trim())
@@ -64,7 +74,6 @@ myApp.controller('mainCtrl', function ($scope, myService) {
                 }, function (error) {
                     console.log(error);
                 });
-
         });
     }());
 });
@@ -73,7 +82,7 @@ myApp.controller('homeCtrl', function ($scope) {
     $scope.loadHeader(false);
 });
 
-myApp.controller('profileCtrl', function ($scope, myService) {
+myApp.controller('profileCtrl', function ($scope) {
     $scope.loadHeader(true);
 });
 
@@ -82,7 +91,6 @@ myApp.controller('registerCtrl', function ($scope, $location, myService) {
         myService.register(username, fullName, email, password, repeatPassword)
             .then(function (data) {
                 sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
-                sessionStorage.setItem('username', username);
                 $location.path('/profile');
             }, function (error) {
                 console.log(error);
@@ -95,7 +103,6 @@ myApp.controller('loginCtrl', function ($scope, $location, myService) {
         myService.login(username, password)
             .then(function (data) {
                 sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
-                sessionStorage.setItem('username', username);
                 $location.path('/profile');
             }, function (error) {
                 console.log(error);
@@ -117,6 +124,19 @@ myApp.controller('logoutCtrl', function ($scope, $http, $location, myService) {
 
 myApp.controller('editCtrl', function ($scope, $location, myService) {
     (function () {
+        myService.myData()
+            .then(function (data) {
+                $scope.nameEdit = data.name;
+                $scope.mailEdit = data.email;
+                $scope.genderEdit = data.gender;
+                $scope.profImgEdit = data.profileImageData;
+                $scope.covImgEdit = data.coverImageData;
+            }, function (error) {
+                console.log(error);
+            });
+    }());
+
+    (function () {
         var container = $('#wrapper');
 
         container.on('click', '#profile-image-button', function () {
@@ -132,7 +152,6 @@ myApp.controller('editCtrl', function ($scope, $location, myService) {
                 reader = new FileReader();
                 reader.onload = function () {
                     var imgUrl = reader.result;
-                    preview.attr('src', imgUrl);
                     $scope.$apply(function () {
                         $scope.profImgEdit = imgUrl.split(',')[1];
                     });
@@ -142,7 +161,7 @@ myApp.controller('editCtrl', function ($scope, $location, myService) {
 
             }
         });
-        
+
         container.on('click', '#profile-cover-button', function () {
             $('#profile-cover').click();
         });
@@ -156,7 +175,6 @@ myApp.controller('editCtrl', function ($scope, $location, myService) {
                 reader = new FileReader();
                 reader.onload = function () {
                     var imgUrl = reader.result;
-                    preview.attr('src', imgUrl);
                     $scope.$apply(function () {
                         $scope.covImgEdit = imgUrl.split(',')[1];
                     });
@@ -167,7 +185,7 @@ myApp.controller('editCtrl', function ($scope, $location, myService) {
             }
         });
     }());
-    
+
     $scope.editProfile = function (fullName, email, gender, image, cover) {
         myService.editProfile(fullName, email, gender, image, cover)
             .then(function (data) {

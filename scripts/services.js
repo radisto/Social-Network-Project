@@ -95,6 +95,19 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
             });
         return defer.promise;
     };
+    
+    service.myData = function () {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        $http.get(BASE_URL + 'me')
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    };
 
     return service;
 });

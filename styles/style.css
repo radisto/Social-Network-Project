@@ -132,6 +132,10 @@ header {
     text-align: right;
 }
 
+.f-right {
+    float: right;
+}
+
 .small-text {
     font-size: 15px;
     text-align: center;
@@ -212,7 +216,6 @@ header {
 
 #view-cover {
     height: 150px;
-    background-image: url(../img/1.jpg);
 }
 
 #view-pic {
@@ -245,7 +248,7 @@ input {
     display: inline-block;
     color: black;
     font-size: 16px;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 20px;
     position: relative;
     padding: 0px 5px;
@@ -311,6 +314,21 @@ input {
     overflow: hidden;
 }
 
-.preview-center {
+.center {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+select {
+    width: 255px;
+    height: 40px;
+    vertical-align: 3px;
+    font-size: 20px;
+    border: none;
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+.m-left {
+    margin-left: 30px;
 }

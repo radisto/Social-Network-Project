@@ -1,7 +1,7 @@
 <div id="reg-form" ng-controller="editCtrl">
     <form>
         <div class="form-header">
-            <span class="big-text"></span>Edit Profile</span>
+            <span class="big-text">Edit Profile</span>
         </div>
         <div class="row">
             <span class="icon">
@@ -23,30 +23,34 @@
             <span class="icon">
                 <i class="fa fa-venus-mars fa-fw"></i>
             </span>
-            <label for="username">
-                <input type="text" class="register" id="username" placeholder="username" ng-model="genderEdit">
+            <label for="gender">
+                <select id="gender" ng-model="genderEdit">
+                    <option value="0">Other</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
             </label>
         </div>
-        <div class="preview-center">
-            <div id="image-preview-holder">
-                <img id="profile-image-preview" />
-            </div>
-            <div>
-                <button id="profile-image-button" class="button small">Upload</button>
-                <input type="file" id="profile-image" />
-            </div>
-        </div>
-        <div class="preview-center">
+        <div class="center">
             <div id="cover-preview-holder">
-                <img id="profile-cover-preview" />
+                <img id="profile-cover-preview" ng-src="data:image/jpg;base64,{{covImgEdit}}"/>
             </div>
             <div>
                 <button id="profile-cover-button" class="button small">Upload</button>
                 <input type="file" id="profile-cover" />
             </div>
         </div>
-        <div class="right">
-            <button class="button big" type="submit" ng-click="editProfile(nameEdit, mailEdit, genderEdit, profImgEdit, covImgEdit)">Submit</button>
+        <div>
+            <div id="image-preview-holder">
+                <img id="profile-image-preview" ng-src="data:image/jpg;base64,{{profImgEdit}}"/>
+            </div>
+            <div>
+                <button id="profile-image-button" class="button small m-left">Upload</button>
+                <input type="file" id="profile-image" />
+                <div class="f-right">
+                    <button class="button big" type="submit" ng-click="editProfile(nameEdit, mailEdit, genderEdit, profImgEdit, covImgEdit)">Submit</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
