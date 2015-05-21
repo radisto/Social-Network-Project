@@ -24,6 +24,11 @@ myApp.config(function ($routeProvider) {
             templateUrl: 'temps/profile-edit.html',
             controller: 'profileCtrl'
         })
+        .when('/profile/password', {
+            title: 'Nice2MeetU - Change Password',
+            templateUrl: 'temps/password-change.html',
+            controller: 'profileCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

@@ -5,7 +5,9 @@ myApp.controller('mainCtrl', function ($scope, myService) {
                 $scope.username = data.username;
                 $scope.profileImage = data.profileImageData;
                 $scope.avatar = data.profileImageData;
-                $scope.coverImage = {'background-image': 'url("' + data.coverImageData + '")'};
+                $scope.coverImage = {
+                    'background-image': 'url("' + data.coverImageData + '")'
+                };
             }, function (error) {
                 console.log(error);
             });
@@ -28,7 +30,7 @@ myApp.controller('mainCtrl', function ($scope, myService) {
             $scope.header = 'temps/guest-header.html';
         }
     }
-    
+
     $scope.searchUsers = function (userName) {
         if (userName && userName.trim()) {
             myService.searchUsers(userName.trim())
@@ -72,7 +74,9 @@ myApp.controller('mainCtrl', function ($scope, myService) {
             myService.userFullData(username)
                 .then(function (data) {
                     $scope.profileImage = data.profileImageData;
-                    $scope.coverImage = {'background-image': 'url("' + data.coverImageData + '")'};
+                    $scope.coverImage = {
+                        'background-image': 'url("' + data.coverImageData + '")'
+                    };
                 }, function (error) {
                     console.log(error);
                 });
@@ -192,6 +196,17 @@ myApp.controller('editCtrl', function ($scope, $location, myService) {
         myService.editProfile(fullName, email, gender, image, cover)
             .then(function (data) {
                 console.log(data);
+                $location.path('/profile');
+            }, function (error) {
+                console.log(error);
+            });
+    }
+});
+
+myApp.controller('passChangeCtrl', function ($scope, $location, myService) {
+    $scope.passChange = function (oldpass, newpass, newpass2) {
+        myService.passChange(oldpass, newpass, newpass2)
+            .then(function (data) {
                 $location.path('/profile');
             }, function (error) {
                 console.log(error);

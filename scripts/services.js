@@ -1,7 +1,7 @@
 myApp.service('myService', function ($http, $q, BASE_URL) {
 
     var service = {};
-    
+
     service.register = function (username, fullName, email, password, repeatPassword) {
         var defer = $q.defer();
         var newUser = {
@@ -75,7 +75,7 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
             });
         return defer.promise;
     };
-    
+
     service.editProfile = function (fullName, email, gender, image, cover) {
         var defer = $q.defer();
         $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
@@ -95,7 +95,25 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
             });
         return defer.promise;
     };
-    
+
+    service.passChange = function (oldpass, newpass, newpass2) {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        var password = {
+            oldPassword: oldpass,
+            newPassword: newpass,
+            confirmPassword: newpass2
+        };
+        $http.put(BASE_URL + 'me/changepassword', password)
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    }
+
     service.myData = function () {
         var defer = $q.defer();
         $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
