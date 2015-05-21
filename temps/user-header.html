@@ -1,15 +1,15 @@
 <div id="profile-holder">
     <div id="pop-up">
-        <img ng-src="{{currentUser.profileImageData || 'http://dummyimage.com/150x180/dddddd/000000&text=no+image'}}"><br>
+        <img ng-src="{{currentUser.profileImageData || 'http://dummyimage.com/100x100/dddddd/000000&text=no+image'}}"><br>
         <span id="username-delete">{{currentUser.username}}</span>
         <span><i class="fa fa-{{currentUser.gender == 1 ? 'mars' : currentUser.gender == 2 ? 'venus' : 'venus-mars'}}"></i></span>
     </div>
     <span class="users-names" ng-repeat="user in foundUsers" id="user{{$index}}">
         <p class="users-name-holder">{{user.name}}</p>
-    </span><!-- ng-model-options="{debounce: 1000}"-->
-    <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-keyup="searchUsers(searchUserName)">
+    </span>
+    <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-change="searchUsers(searchUserName)">
 
-    <img ng-src="data:image/jpg;base64,{{profileImage}}" id="profile-pic">
+    <img ng-src="{{avatar}}" id="profile-pic">
 
     <span id="drop-down">
         <span id="username-header">{{username}}</span>
@@ -18,7 +18,7 @@
         <i class="fa fa-sort-down (alias)"></i>
     </span>
     <div id="invisible">
-        <a href="#/profile">view profile</a>
+        <a href="#/profile" ng-click="viewProfile()">view profile</a>
         <a href="#/profile">change password</a>
         <a href="#/profile/edit">edit profile</a>
         <a href="#/logout">logout</a>

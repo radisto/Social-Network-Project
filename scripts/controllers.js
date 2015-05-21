@@ -1,15 +1,17 @@
 myApp.controller('mainCtrl', function ($scope, myService) {
-    (function () {
+    $scope.viewProfile = function () {
         myService.myData()
             .then(function (data) {
                 $scope.username = data.username;
                 $scope.profileImage = data.profileImageData;
-                //$scope.coverImage = data.coverImageData;
+                $scope.avatar = data.profileImageData;
+                $scope.coverImage = {'background-image': 'url("' + data.coverImageData + '")'};
             }, function (error) {
                 console.log(error);
             });
-    }());
-    
+    };
+    $scope.viewProfile();
+
     $scope.loadHeader = function (isLogged) {
         if (isLogged) {
             $scope.header = 'temps/user-header.html';
@@ -69,8 +71,8 @@ myApp.controller('mainCtrl', function ($scope, myService) {
             var username = $('#username-delete').text();
             myService.userFullData(username)
                 .then(function (data) {
-                    console.log(data.username);
-                    console.log(data.isFriend);
+                    $scope.profileImage = data.profileImageData;
+                    $scope.coverImage = {'background-image': 'url("' + data.coverImageData + '")'};
                 }, function (error) {
                     console.log(error);
                 });
