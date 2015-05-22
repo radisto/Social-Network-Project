@@ -2,12 +2,25 @@ myApp.controller('mainCtrl', function ($scope, $location, myService) {
     $scope.viewProfile = function () {
         myService.myData()
             .then(function (data) {
+                $scope.currentUsername = undefined;
                 $scope.username = data.username;
                 $scope.profileImage = data.profileImageData;
                 $scope.avatar = data.profileImageData;
-                $scope.coverImage = {
-                    'background-image': 'url("' + data.coverImageData + '")'
+                if (data.coverImageData) {
+                    $scope.coverImage = {
+                        'background-image': 'url("' + data.coverImageData + '")'
+                    };
+                } else {
+                    $scope.coverImage = {
+                        'background-image': 'url("../img/cover.png")'
+                    };
                 };
+            }, function (error) {
+                console.log(error);
+            });
+        myService.getFriendRequests()
+            .then(function (data) {
+                $scope.friends = data.length;
             }, function (error) {
                 console.log(error);
             });
@@ -75,11 +88,18 @@ myApp.controller('mainCtrl', function ($scope, $location, myService) {
             var username = $('#found-username').text();
             myService.userFullData(username)
                 .then(function (data) {
+                    $scope.friends = 0;
                     $scope.currentUsername = data.username;
                     $scope.profileImage = data.profileImageData;
-                    $scope.coverImage = {
-                        'background-image': 'url("' + data.coverImageData + '")'
-                    };
+                    if (data.coverImageData) {
+                        $scope.coverImage = {
+                            'background-image': 'url("' + data.coverImageData + '")'
+                        };
+                    } else {
+                        $scope.coverImage = {
+                            'background-image': 'url("../img/cover.png")'
+                        };
+                    }
                     $scope.fullName = data.name;
                     var isFriend = data.isFriend;
                     var waiting = data.hasPendingRequest;
@@ -109,6 +129,16 @@ myApp.controller('mainCtrl', function ($scope, $location, myService) {
             .then(function (data) {
                 $scope.disabled = true;
                 $scope.buttonText = 'Friend request sent';
+            }, function (error) {
+                console.log(error);
+            });
+    };
+
+    $scope.showFriendRequests = function () {
+        myService.getFriendRequests()
+            .then(function (data) {
+                console.log(data);
+                $scope.friendRequests = data;
             }, function (error) {
                 console.log(error);
             });

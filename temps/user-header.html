@@ -9,7 +9,7 @@
     </span>
     <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-change="searchUsers(searchUserName)">
 
-    <img ng-src="{{avatar}}" id="profile-pic">
+    <img ng-src="{{avatar || 'http://dummyimage.com/50x50/dddddd/000000&text=no+image'}}" id="profile-pic">
 
     <span id="drop-down">
         <span id="username-header">{{username}}</span>
