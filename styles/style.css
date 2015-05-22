@@ -103,10 +103,16 @@ header {
     transition-duration: 0.2s;
 }
 
+.button2 {
+    color: white;
+    background-color: rgb(30, 180, 30);
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+}
+
 .button:hover {
     cursor: pointer;
     background-color: rgb(125, 255, 0);
-    border: 1px solid gray;
     color: black;
     transition-property: background-color, color;
     transition-duration: 0.2s;
@@ -126,6 +132,19 @@ header {
     font-size: 20px;
     border: none;
     border-radius: 5px;
+}
+
+.small:hover,
+.big:hover {
+    border: 1px solid gray;
+}
+
+.regular {
+    padding: 5px 15px;
+    border: double;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .right {
@@ -331,4 +350,20 @@ select {
 
 .m-left {
     margin-left: 30px;
+}
+
+#friend-request {
+    margin-left: 50px;
+    display: inline-block;
+    vertical-align: 40px;
+    text-align: center;
+}
+
+#name-text {
+    font-size: 40px;
+    color: white;
+    text-shadow: 2px 0 1px black, 0 2px 1px black, -2px 0 1px black, 0 -2px 1px black;
+    font-weight: bold;
+    letter-spacing: 5px;
+    font-family: Facebook;
 }

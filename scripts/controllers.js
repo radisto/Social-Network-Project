@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, myService) {
+myApp.controller('mainCtrl', function ($scope, $location, myService) {
     $scope.viewProfile = function () {
         myService.myData()
             .then(function (data) {
@@ -12,7 +12,9 @@ myApp.controller('mainCtrl', function ($scope, myService) {
                 console.log(error);
             });
     };
-    $scope.viewProfile();
+    if (sessionStorage.sessionToken) {
+        $scope.viewProfile();
+    }
 
     $scope.loadHeader = function (isLogged) {
         if (isLogged) {
@@ -70,18 +72,47 @@ myApp.controller('mainCtrl', function ($scope, myService) {
 
     (function () {
         $('header').on('click', '.users-names', function () {
-            var username = $('#username-delete').text();
+            var username = $('#found-username').text();
             myService.userFullData(username)
                 .then(function (data) {
+                    $scope.currentUsername = data.username;
                     $scope.profileImage = data.profileImageData;
                     $scope.coverImage = {
                         'background-image': 'url("' + data.coverImageData + '")'
                     };
+                    $scope.fullName = data.name;
+                    var isFriend = data.isFriend;
+                    var waiting = data.hasPendingRequest;
+                    if (!isFriend && !waiting) {
+                        $scope.disabled = false;
+                    } else {
+                        $scope.disabled = true;
+                    }
+                    if (isFriend) {
+                        $scope.buttonText = 'Friend';
+                    } else {
+                        if (waiting) {
+                            $scope.buttonText = 'Friend request sent';
+                        } else {
+                            $scope.buttonText = 'Sent friend request';
+                        }
+                    }
+                    $location.path('/profile');
                 }, function (error) {
                     console.log(error);
                 });
         });
     }());
+
+    $scope.addFriend = function (username) {
+        myService.addFriend(username)
+            .then(function (data) {
+                $scope.disabled = true;
+                $scope.buttonText = 'Friend request sent';
+            }, function (error) {
+                console.log(error);
+            });
+    };
 });
 
 myApp.controller('homeCtrl', function ($scope) {
@@ -98,6 +129,7 @@ myApp.controller('registerCtrl', function ($scope, $location, myService) {
             .then(function (data) {
                 sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
                 $location.path('/profile');
+                $scope.viewProfile();
             }, function (error) {
                 console.log(error);
             });
@@ -110,6 +142,7 @@ myApp.controller('loginCtrl', function ($scope, $location, myService) {
             .then(function (data) {
                 sessionStorage.setItem('sessionToken', data.token_type + ' ' + data.access_token);
                 $location.path('/profile');
+                $scope.viewProfile();
             }, function (error) {
                 console.log(error);
             });

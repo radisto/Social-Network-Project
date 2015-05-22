@@ -127,6 +127,19 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
         return defer.promise;
     };
 
+    service.addFriend = function (username) {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        $http.post(BASE_URL + 'me/requests/' + username)
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    };
+
     return service;
 });
 
