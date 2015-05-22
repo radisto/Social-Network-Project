@@ -2,12 +2,32 @@
     <div id="view-cover" ng-style="coverImage">
         <div id="profile-image-holder">
             <img ng-src="{{profileImage || 'http://dummyimage.com/120x150/dddddd/000000&text=no+image'}}" id="view-pic">
-            <span id="fiends-count" ng-if="friends != 0" ng-click="showFriendRequests()">{{friends}}</span>
+            <span id="requests-count" ng-if="requestsCount != 0" ng-click="showFriendRequests()">{{requestsCount}}</span>
             <div id="friend-request" ng-if="currentUsername">
                 <span id="name-text">{{fullName}}</span>
                 <br>
                 <button class="regular" ng-disabled="disabled" ng-click="addFriend(currentUsername)" ng-class="{button: !disabled, button2: disabled}">{{buttonText}}</button>
             </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div id="requests" ng-if="requests">
+        <span class="count-header">Friend requests: {{requestsCount}}</span>
+        <div ng-repeat="request in requests">
+            <img ng-src="{{request.user.profileImageData}}"><br>
+            <span>{{request.user.name}}</span>
+            <span><i class="fa fa-{{request.user.gender == 1 ? 'mars' : request.user.gender == 2 ? 'venus' : 'venus-mars'}}"></i></span><br>
+            <button class="button small" ng-click="approve(request.id)">Approve</button>
+            <button class="button small" ng-click="reject(request.id)">Reject</button>
+        </div>
+    </div>
+    <div id="friends" ng-if="friendsCount > 0">
+        <span class="count-header">Friends: {{friendsCount}}</span>
+        <div ng-repeat="friend in friends">
+            <img ng-src="{{friend.profileImageData}}"><br>
+            <a href="" ng-click="viewFriendProfile(friend.username)">{{friend.name}}</a>
+            <span><i class="fa fa-{{friend.gender == 1 ? 'mars' : friend.gender == 2 ? 'venus' : 'venus-mars'}}"></i></span>
         </div>
     </div>
 </div>

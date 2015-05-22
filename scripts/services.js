@@ -152,7 +152,7 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
             });
         return defer.promise;
     };
-    
+
     service.getFriendRequests = function () {
         var defer = $q.defer();
         $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
@@ -166,21 +166,31 @@ myApp.service('myService', function ($http, $q, BASE_URL) {
         return defer.promise;
     };
 
+    service.approve = function (id) {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        $http.put(BASE_URL + 'me/requests/' + id + '?status=approved')
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    }
+
+    service.reject = function (id) {
+        var defer = $q.defer();
+        $http.defaults.headers.common['Authorization'] = sessionStorage.getItem('sessionToken');
+        $http.put(BASE_URL + 'me/requests/' + id + '?status=rejected')
+            .success(function (data) {
+                defer.resolve(data);
+            })
+            .error(function (err) {
+                defer.reject(err);
+            });
+        return defer.promise;
+    }
+
     return service;
 });
-
-
-//module.factory('sessionInjector', ['SessionService', function(SessionService) {  
-//    var sessionInjector = {
-//        request: function(config) {
-//            if (!SessionService.isAnonymus) {
-//                config.headers['x-session-token'] = SessionService.token;
-//            }
-//            return config;
-//        }
-//    };
-//    return sessionInjector;
-//}]);
-//module.config(['$httpProvider', function($httpProvider) {  
-//    $httpProvider.interceptors.push('sessionInjector');
-//}]);

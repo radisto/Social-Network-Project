@@ -4,7 +4,7 @@
         <span id="found-username">{{currentUser.username}}</span>
         <span><i class="fa fa-{{currentUser.gender == 1 ? 'mars' : currentUser.gender == 2 ? 'venus' : 'venus-mars'}}"></i></span>
     </div>
-    <span class="users-names" ng-repeat="user in foundUsers" id="user{{$index}}">
+    <span class="users-names" ng-repeat="user in foundUsers" data-id="user{{$index}}">
         <p class="users-name-holder">{{user.name}}</p>
     </span>
     <input type="text" id="user-search" placeholder="search users" ng-model="searchUserName" ng-change="searchUsers(searchUserName)">
